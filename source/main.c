@@ -16,6 +16,18 @@ const M7_CAM m7_defualt = {
     0x0A00,0x2600,
     {256,0,0},{0,256,0},{0,0,256}
 };
+void move_player(){
+    key_poll();
+    M7_CAM *cam = m7_level.camera;
+    VECTOR dir = {0,0,0};
+    dir.z = 520*key_tri_fire();
+    m7_rotate(
+        cam,
+        cam->phi+(320*key_tri_horz()),
+        cam->theta+(320*key_tri_vert())
+    );
+    m7_translate_local(cam,&dir);
+}
 int main(){
     m7_init(
         &m7_level,&m7_cam,m7_bgaffs,m7_sprites,BG_CBB(0)|BG_SBB(22)|BG_REG_64x32|BG_PRIO(3),BG_CBB(0)|BG_SBB(24)|BG_AFF_128x128|BG_WRAP|BG_PRIO(3));
@@ -36,6 +48,7 @@ int main(){
     irq_add(II_VBLANK,NULL);
     while(1){
         VBlankIntrWait();
+        move_player();
         m7_prep_horizon(&m7_level);
         if(m7_level.horizon>0){
             BFN_SET(REG_DISPCNT,DCNT_MODE0,DCNT_MODE);
