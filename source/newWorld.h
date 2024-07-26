@@ -1,0 +1,5 @@
+#include<tonc.h>
+const VECTOR spritesPos[] = {
+    {0x0,0x100,0x0},
+    {0x40000,0x100,0x40000},
+};
