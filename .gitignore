@@ -1,6 +1,5 @@
 ref
-graphics
-build
+dist
 *.gba
 *.elf
 .vscode
