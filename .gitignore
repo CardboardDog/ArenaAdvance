@@ -3,3 +3,6 @@ dist
 *.gba
 *.elf
 .vscode
+art/*
+build
+*.sav
