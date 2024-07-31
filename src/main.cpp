@@ -26,7 +26,7 @@
 #include "bn_sprite_items_bubble.h"
 #include "bn_sprite_items_rock.h"
 #include "bn_sprite_items_hammer.h"
-#include "bn_regular_bg_items_space.h"
+#include "bn_regular_bg_items_night.h"
 
 namespace{
     void test_scene(){
@@ -42,7 +42,7 @@ namespace{
         bn::sprite_animate_action<2> bubble_run = bn::create_sprite_animate_action_forever(bubble,32,bn::sprite_items::bubble.tiles_item(),0,1);
         bn::sprite_animate_action<2> rock_run = bn::create_sprite_animate_action_forever(rock,4,bn::sprite_items::rock.tiles_item(),0,1);
         
-        bn::regular_bg_ptr mountains = bn::regular_bg_items::space.create_bg(0,0);
+        bn::regular_bg_ptr mountains = bn::regular_bg_items::night.create_bg(0,0);
 
         while(1){
             boxer_run.update();
@@ -51,7 +51,6 @@ namespace{
             bubble_run.update();
             rock_run.update();
             bn::core::update();
-            boxer.set_visible(true);
         }
     }
 }
