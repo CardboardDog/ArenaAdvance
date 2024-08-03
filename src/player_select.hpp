@@ -22,7 +22,7 @@
 #include "bn_sprite_regular_second_attributes_hbe_ptr.h"
 #include "bn_log.h"
 #include "bn_log_backend.h"
-
+#include "bn_random.h"
 
 #include "bn_sprite_items_boxer.h"
 #include "bn_sprite_items_wiener.h"

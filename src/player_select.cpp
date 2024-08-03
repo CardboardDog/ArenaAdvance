@@ -14,6 +14,9 @@ namespace players{
         fixed spotlightSelect = 0;
         fixed targetSelect = 0;
         int direction = 0;
+        int animFrame = 0;
+        int flicker = 0;
+        random Random;
         sprite_ptr spotlight = sprite_items::spotlight.create_sprite(0,0);
         sprite_ptr playerSprites[4] = {
             sprite_items::boxer.create_sprite((0-1.5)*32,20),
@@ -69,6 +72,35 @@ namespace players{
             targetSelect=(personSelect-1.5)*32;
             spotlightSelect += (targetSelect-spotlightSelect)/4;
             spotlight.set_position(spotlightSelect,0);
+
+            if(keypad::start_pressed())animFrame++;
+
+            if(animFrame!=0){
+                if(animFrame<20){
+                    for(int i=0;i<4;i++){
+                        // sorry about this line :(
+                        playerSprites[i].set_position(playerSprites[i].position().x(),20+(((animFrame+(i*3))*(animFrame+(i*3)))/4));
+                    }
+                }else if(animFrame == 20){
+                    for(int i=0;i<4;i++){
+                        playerSprites[i].set_visible(false);
+                    }
+                }else if(animFrame<70){
+                    if(flicker==0){
+                        if(Random.get_int(2)==1){
+                            spotlight.set_visible(false);
+                        }else{
+                            spotlight.set_visible(true);
+                        }
+                        flicker = (70-animFrame)/6;
+                    }else{
+                        flicker--;
+                    }
+                }else{
+                    spotlight.set_visible(false);
+                }
+                animFrame++;
+            }
         }
     }
 }
