@@ -32,7 +32,7 @@
 #include "bn_sprite_items_spotlight.h"
 #include "bn_sprite_items_null.h"
 
-#include "bn_regular_bg_items_night.h"
+#include "bn_regular_bg_items_black.h"
 
 namespace players{
     void playerSelect();

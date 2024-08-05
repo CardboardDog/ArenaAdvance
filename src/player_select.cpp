@@ -17,6 +17,7 @@ namespace players{
         int animFrame = 0;
         int flicker = 0;
         random Random;
+        regular_bg_ptr nothing = regular_bg_items::black.create_bg(0,0);
         sprite_ptr spotlight = sprite_items::spotlight.create_sprite(0,0);
         sprite_ptr playerSprites[4] = {
             sprite_items::boxer.create_sprite((0-1.5)*32,20),
@@ -25,7 +26,7 @@ namespace players{
             sprite_items::null.create_sprite((3-1.5)*32,20)
         };
         while(1){
-            bn::core::update();
+            core::update();
             if(keypad::a_pressed())personSelect+=1;
             if(keypad::b_pressed())personSelect-=1;
             
@@ -100,6 +101,9 @@ namespace players{
                     spotlight.set_visible(false);
                 }
                 animFrame++;
+            }
+            if(animFrame==80){
+                break;
             }
         }
     }
