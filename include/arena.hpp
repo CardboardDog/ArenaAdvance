@@ -31,6 +31,8 @@
 #include "stage_select.hpp"
 #include "player_select.hpp"
 
+#include "player.hpp"
+
 namespace arena{
     void battle();
 }
