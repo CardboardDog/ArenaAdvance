@@ -28,9 +28,9 @@
 
 #include "bn_sprite_items_curtain.h"
 
-namespace stages{
-    extern int picked; 
-    void stageSelectFade();
-    void stageSelect();
-    void stageSelectFadeOut();
+#include "stage_select.hpp"
+#include "player_select.hpp"
+
+namespace arena{
+    void battle();
 }

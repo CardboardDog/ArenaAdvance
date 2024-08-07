@@ -1,6 +1,7 @@
 #include "bn_core.h"
 #include "player_select.hpp"
 #include "stage_select.hpp"
+#include "arena.hpp"
 
 int main(){
     bn::core::init();
@@ -9,7 +10,7 @@ int main(){
         stages::stageSelectFade();
         stages::stageSelect();
         stages::stageSelectFadeOut();
-        while(1)bn::core::update();
+        arena::battle();
         bn::core::update();
     }
 }
