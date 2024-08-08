@@ -22,6 +22,21 @@ namespace arena{
                 stages::picked=0;
                 break;
         }
+        sprite_ptr ptrPile[4] = {
+            sprite_items::boxer.create_sprite((0-1.5)*32,20),
+            sprite_items::null.create_sprite((1-1.5)*32,20),
+            sprite_items::null.create_sprite(((2-1.5)*32),20),
+            sprite_items::null.create_sprite((3-1.5)*32,20)
+        };
+        for(int i=0;i<4;i++){
+            ptrPile[i].set_visible(false);
+        }
+        players::player* allPlayers[4] = {
+            new players::player(players::picked[0],&ptrPile[0]),
+            new players::player(players::picked[1],&ptrPile[1]),
+            new players::player(players::picked[2],&ptrPile[2]),
+            new players::player(players::picked[3],&ptrPile[3])
+        };
         camera_ptr curtainCam = camera_ptr::create(0,0);
         sprite_ptr sprites[] = {
             curtainLayer(-1),
