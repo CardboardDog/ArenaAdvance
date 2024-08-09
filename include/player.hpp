@@ -60,12 +60,14 @@ namespace players{
         public:
             player(int fighter, bn::sprite_ptr* sprPtr);
             void tick();
+            void setRespawn(int x, int y);
             ~player();
             int playType;
             unsigned int falls;
             unsigned int kos;
             unsigned int damage;
             bool stunned;
+            int respawn[2];
             bn::fixed velocity[2];
         private:
             bn::sprite_ptr* sprite = nullptr;

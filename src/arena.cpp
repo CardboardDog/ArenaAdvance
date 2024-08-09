@@ -37,6 +37,39 @@ namespace arena{
             new players::player(players::picked[2],&ptrPile[2]),
             new players::player(players::picked[3],&ptrPile[3])
         };
+        switch(stages::picked){
+            case 0:
+                allPlayers[0]->setRespawn(40,40);
+                allPlayers[1]->setRespawn(-20,39);
+                allPlayers[2]->setRespawn(112,20);
+                allPlayers[3]->setRespawn(-105,-1);
+                break;
+            case 1:
+                allPlayers[0]->setRespawn(40,0);
+                allPlayers[1]->setRespawn(-40,0);
+                allPlayers[2]->setRespawn(15,-25);
+                allPlayers[3]->setRespawn(-15,-24);
+                break;
+            case 2:
+                allPlayers[0]->setRespawn(0,37);
+                allPlayers[1]->setRespawn(-55,-21);
+                allPlayers[2]->setRespawn(55,-21);
+                allPlayers[3]->setRespawn(0,-57);
+                break;
+            case 3:
+                allPlayers[0]->setRespawn(10,21);
+                allPlayers[1]->setRespawn(-30,21);
+                allPlayers[2]->setRespawn(80,-2);
+                allPlayers[3]->setRespawn(-60,-29);
+                break;
+            default:
+                allPlayers[0]->setRespawn(0,0);
+                allPlayers[1]->setRespawn(0,0);
+                allPlayers[2]->setRespawn(0,0);
+                allPlayers[3]->setRespawn(0,0);
+                return;
+                break;
+        }
         camera_ptr curtainCam = camera_ptr::create(0,0);
         sprite_ptr sprites[] = {
             curtainLayer(-1),

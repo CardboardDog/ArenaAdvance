@@ -19,5 +19,11 @@ namespace players{
             this->sprite->set_item(sprite_items::null);
             this->sprite->set_visible(false);
         }
+        this->sprite->set_position(0,0);
+    }
+    void player::setRespawn(int x, int y){
+        this->sprite->set_position(x,y);
+        this->respawn[0]=x;
+        this->respawn[0]=y;
     }
 }
