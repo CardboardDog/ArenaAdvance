@@ -3,6 +3,27 @@ using namespace bn;
 #define curtainSlice(x,y) sprite_items::curtain.create_sprite(x*64,y*64)
 #define curtainLayer(y) curtainSlice(0,y),curtainSlice(1,y),curtainSlice(-1,y),curtainSlice(2,y),curtainSlice(-2,y)
 namespace arena{
+    fixed tangent(int theta){ 
+        /* 
+            This was originally a pretty fast
+            three-liner, but somehow it grew 
+            out of control. It's not really
+            the best choice when you need
+            speed, but it has more features
+            than my original implementation, 
+            making it more versatile. oh well.
+            (sorry if this function makes you
+            want to bleach your eyeballs)
+        */
+        pair<fixed,fixed> sin_cos;
+        if(theta<0)
+            sin_cos = degrees_lut_sin_and_cos(360-(abs(theta)%360));
+        else
+            sin_cos = degrees_lut_sin_and_cos(theta%360);
+        if(sin_cos.second==0)return (sin_cos.first<0)?9999:-9999; // good enough :/
+        if(theta>=0)return sin_cos.first/sin_cos.second;
+        return sin_cos.first/sin_cos.second;
+    }
     void battle(){
         regular_bg_ptr sky = regular_bg_items::mountains.create_bg(0,0);
         switch(stages::picked){
@@ -85,6 +106,15 @@ namespace arena{
             if(animFrame>210){
                 break;
             }
+        }
+        animFrame=-50;
+        sprite_ptr countDown = sprite_items::count.create_sprite(0,0);
+        sprite_animate_action<3> countAnim = create_sprite_animate_action_forever(countDown,90,sprite_items::count.tiles_item(),2,1,0);
+        while(animFrame<225){
+            countDown.set_position(tangent(animFrame*2)*50,0);
+            countAnim.update();
+            core::update();
+            animFrame++;
         }
         while(1){
             core::update();

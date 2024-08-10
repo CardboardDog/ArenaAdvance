@@ -27,6 +27,7 @@
 #include "bn_regular_bg_items_night.h"
 
 #include "bn_sprite_items_curtain.h"
+#include "bn_sprite_items_count.h"
 
 #include "stage_select.hpp"
 #include "player_select.hpp"
