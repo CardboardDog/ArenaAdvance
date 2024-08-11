@@ -65,6 +65,7 @@ namespace players{
             void setRespawn(int x, int y);
             void walk(bool left);
             void dontWalk();
+            void animate();
             ~player();
             int playType;
             unsigned int falls;
@@ -77,6 +78,12 @@ namespace players{
             bn::fixed currentWalk;
             bn::fixed maxWalk;
             bn::fixed walkSpeed;
+            bn::sprite_animate_action<4>* boxerRun;
+            bn::sprite_animate_action<4>* wienerRun;
+            bn::sprite_animate_action<4>* hammerRun;
+            bn::sprite_animate_action<2>* bubbleRun;
+            bn::sprite_animate_action<2>* rockRun;
+            bn::sprite_animate_action<2>* idle;
         private:
             bn::sprite_ptr* sprite = nullptr;
     };

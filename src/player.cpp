@@ -7,24 +7,24 @@ namespace players{
         this->sprite->set_visible(true);
         if(fighter==0){
             this->sprite->set_item(sprite_items::boxer);
-            this->maxWalk = 6;
+            this->maxWalk = 3.5;
             this->walkSpeed = 0.5;
         }else if(fighter==1){
-            this->sprite->set_item(sprite_items::bubble);
+            this->sprite->set_item(sprite_items::wiener);
             this->maxWalk = 8;
             this->walkSpeed = 1;
         }else if(fighter==2){
             this->sprite->set_item(sprite_items::hammer);
-            this->maxWalk = 4;
+            this->maxWalk = 2;
             this->walkSpeed = 0.5;
         }else if(fighter==3){
+            this->sprite->set_item(sprite_items::bubble);
+            this->maxWalk = 10;
+            this->walkSpeed = 0.25;
+        }else if(fighter==4){
             this->sprite->set_item(sprite_items::rock);
             this->maxWalk = 12;
             this->walkSpeed = 1;
-        }else if(fighter==4){
-            this->sprite->set_item(sprite_items::wiener);
-            this->maxWalk = 10;
-            this->walkSpeed = 0.5;
         }else if(fighter==5){
             this->sprite->set_item(sprite_items::null);
             this->sprite->set_visible(false);
@@ -69,5 +69,30 @@ namespace players{
         this->currentWalk+=amount;
         if(this->currentWalk>this->maxWalk)this->currentWalk=this->maxWalk;
         if(this->currentWalk<-this->maxWalk)this->currentWalk=-this->maxWalk;
+    }
+    void player::animate(){
+        if(this->currentWalk.round_integer()!=0){
+            switch(this->playType){
+                case 0:
+                    this->boxerRun->update();
+                    break;
+                case 1:
+                    this->wienerRun->update();
+                    break;
+                case 2:
+                    this->hammerRun->update();
+                    break;
+                case 3:
+                    this->bubbleRun->update();
+                    break;
+                case 4:
+                    this->rockRun->update();
+                    break;
+                default:
+                    break;
+            }
+        }else{
+            this->idle->update();
+        }
     }
 }

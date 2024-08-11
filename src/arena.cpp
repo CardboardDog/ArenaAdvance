@@ -2,6 +2,12 @@
 using namespace bn;
 #define curtainSlice(x,y) sprite_items::curtain.create_sprite(x*64,y*64)
 #define curtainLayer(y) curtainSlice(0,y),curtainSlice(1,y),curtainSlice(-1,y),curtainSlice(2,y),curtainSlice(-2,y)
+#define run4(ptr,type,speed) create_sprite_animate_action_forever(ptrPile[ptr],speed,sprite_items::type.tiles_item(),0,1,2,3)
+#define runAll4(ptr) run4(ptr,boxer,8),run4(0,wiener,4),run4(0,hammer,16)
+#define run2(ptr,type,speed) create_sprite_animate_action_forever(ptrPile[ptr],speed,sprite_items::type.tiles_item(),0,1)
+#define runAll2(ptr) run2(ptr,bubble,32),run2(ptr,rock,4)
+#define idle(ptr,type) create_sprite_animate_action_forever(ptrPile[ptr],1,sprite_items::type.tiles_item(),0,0)
+#define idleAll(ptr) idle(ptr,boxer),idle(ptr,wiener),idle(ptr,hammer),idle(ptr,bubble),idle(ptr,rock)
 namespace arena{
     fixed tangent(int theta){ 
         /* 
@@ -58,6 +64,53 @@ namespace arena{
             new players::player(players::picked[2],&ptrPile[2]),
             new players::player(players::picked[3],&ptrPile[3])
         };
+        sprite_animate_action<4> fourRunAnims[15] = {
+            runAll4(0),
+            runAll4(1),
+            runAll4(2),
+            runAll4(3),
+            runAll4(4)
+        };
+        sprite_animate_action<2> twoRunAnims[10] = {
+            runAll2(0),
+            runAll2(1),
+            runAll2(2),
+            runAll2(3),
+            runAll2(4)
+        };
+        sprite_animate_action<2> idleAnims[25] = {
+            idleAll(0),
+            idleAll(1),
+            idleAll(2),
+            idleAll(3),
+            idleAll(4)
+        };
+        for(int i=0;i<4;i++){
+            allPlayers[i]->boxerRun = &fourRunAnims[i*5];
+            allPlayers[i]->wienerRun = &fourRunAnims[(i*5)+1];
+            allPlayers[i]->hammerRun = &fourRunAnims[(i*5)+2];
+            allPlayers[i]->bubbleRun = &twoRunAnims[i*5];
+            allPlayers[i]->rockRun = &twoRunAnims[(i*5)+1];
+            switch(players::picked[i]){
+                case 0:
+                    allPlayers[i]->idle = &idleAnims[i*5];
+                    break;
+                case 1:
+                    allPlayers[i]->idle = &idleAnims[(i*5)+1];
+                    break;
+                case 2:
+                    allPlayers[i]->idle = &idleAnims[(i*5)+2];
+                    break;
+                case 3:
+                    allPlayers[i]->idle = &idleAnims[(i*5)+3];
+                    break;
+                case 4:
+                    allPlayers[i]->idle = &idleAnims[(i*5)+4];
+                    break;
+                default:
+                    break;
+            }
+        }
         switch(stages::picked){
             case 0:
                 allPlayers[0]->setRespawn(40,40);
@@ -121,6 +174,7 @@ namespace arena{
             playerController->update();
             for(int i=0;i<4;i++){
                 allPlayers[i]->update();
+                allPlayers[i]->animate();
             }
             core::update();
         }

@@ -53,16 +53,16 @@ namespace players{
                     playerSprites[(int)personSelect].set_item(sprite_items::boxer);
                     playerSprites[(int)personSelect].set_position((personSelect-1.5)*32,20);
                 }else if(picked[(int)personSelect]==1){
-                    playerSprites[(int)personSelect].set_item(sprite_items::bubble);
+                    playerSprites[(int)personSelect].set_item(sprite_items::wiener);
                     playerSprites[(int)personSelect].set_position((personSelect-1.5)*32,20);
                 }else if(picked[(int)personSelect]==2){
                     playerSprites[(int)personSelect].set_item(sprite_items::hammer);
                     playerSprites[(int)personSelect].set_position(((personSelect-1.5)*32)+5,20);
                 }else if(picked[(int)personSelect]==3){
-                    playerSprites[(int)personSelect].set_item(sprite_items::rock);
+                    playerSprites[(int)personSelect].set_item(sprite_items::bubble);
                     playerSprites[(int)personSelect].set_position((personSelect-1.5)*32,20);
                 }else if(picked[(int)personSelect]==4){
-                    playerSprites[(int)personSelect].set_item(sprite_items::wiener);
+                    playerSprites[(int)personSelect].set_item(sprite_items::rock);
                     playerSprites[(int)personSelect].set_position((personSelect-1.5)*32,20);
                 }else if(picked[(int)personSelect]==5){
                     playerSprites[(int)personSelect].set_item(sprite_items::null);
