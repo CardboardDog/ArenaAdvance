@@ -33,6 +33,7 @@
 #include "player_select.hpp"
 
 #include "player.hpp"
+#include "controller.hpp"
 
 namespace arena{
     void battle();

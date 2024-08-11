@@ -116,7 +116,12 @@ namespace arena{
             core::update();
             animFrame++;
         }
+        controllers::controller* playerController = new controllers::controller(allPlayers[0]);
         while(1){
+            playerController->update();
+            for(int i=0;i<4;i++){
+                allPlayers[i]->update();
+            }
             core::update();
         }
     }

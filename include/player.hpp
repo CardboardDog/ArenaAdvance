@@ -55,21 +55,30 @@
 #define tWiener 4;
 #define tNull 5;
 
+#ifndef __PLAYER_DEFINED__
+#define __PLAYER_DEFINED__
 namespace players{
     class player{
         public:
             player(int fighter, bn::sprite_ptr* sprPtr);
-            void tick();
+            void update();
             void setRespawn(int x, int y);
+            void walk(bool left);
+            void dontWalk();
             ~player();
             int playType;
             unsigned int falls;
             unsigned int kos;
             unsigned int damage;
             bool stunned;
+            bool inAir;
             int respawn[2];
             bn::fixed velocity[2];
+            bn::fixed currentWalk;
+            bn::fixed maxWalk;
+            bn::fixed walkSpeed;
         private:
             bn::sprite_ptr* sprite = nullptr;
     };
 }
+#endif
