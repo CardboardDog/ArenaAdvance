@@ -9,22 +9,27 @@ namespace players{
             this->sprite->set_item(sprite_items::boxer);
             this->maxWalk = 3.5;
             this->walkSpeed = 0.5;
+            this->jumpPower = 3;
         }else if(fighter==1){
             this->sprite->set_item(sprite_items::wiener);
             this->maxWalk = 8;
             this->walkSpeed = 1;
+            this->jumpPower = 2.5;
         }else if(fighter==2){
             this->sprite->set_item(sprite_items::hammer);
             this->maxWalk = 2;
             this->walkSpeed = 0.5;
+            this->jumpPower = 2;
         }else if(fighter==3){
             this->sprite->set_item(sprite_items::bubble);
             this->maxWalk = 10;
             this->walkSpeed = 0.25;
+            this->jumpPower = 4;
         }else if(fighter==4){
             this->sprite->set_item(sprite_items::rock);
             this->maxWalk = 12;
             this->walkSpeed = 1;
+            this->jumpPower = 2;
         }else if(fighter==5){
             this->sprite->set_item(sprite_items::null);
             this->sprite->set_visible(false);
@@ -49,6 +54,8 @@ namespace players{
                 this->sprite->position().x()+this->currentWalk/2,
                 this->sprite->position().y()
             );  
+        }else{
+            this->velocity[1] += 0.25;
         }
     }
     void player::dontWalk(){
@@ -69,6 +76,13 @@ namespace players{
         this->currentWalk+=amount;
         if(this->currentWalk>this->maxWalk)this->currentWalk=this->maxWalk;
         if(this->currentWalk<-this->maxWalk)this->currentWalk=-this->maxWalk;
+    }
+    void player::jump(){
+        if(true){
+            this->velocity[1] = -this->jumpPower;
+            this->inAir = true;
+            this->velocity[0] = this->currentWalk/2;
+        }
     }
     void player::animate(){
         if(this->currentWalk.round_integer()!=0){

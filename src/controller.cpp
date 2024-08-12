@@ -5,6 +5,7 @@ namespace controllers{
         this->playerObj = player;
     }
     void controller::update(){
+        if(keypad::up_pressed())this->playerObj->jump();
         if(keypad::left_held()){
             this->playerObj->walk(true);
             return;
