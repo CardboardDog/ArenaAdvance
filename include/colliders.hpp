@@ -20,22 +20,25 @@
 #include "bn_sprite_regular_second_attributes.h"
 #include "bn_sprite_affine_second_attributes_hbe_ptr.h"
 #include "bn_sprite_regular_second_attributes_hbe_ptr.h"
+#include "bn_log.h"
+#include "bn_log_backend.h"
+#include "bn_random.h"
+#include "bn_deque.h"
+#include "bn_music_actions.h"
+#include "bn_sprite_actions.h"
+#include "bn_sprite_animate_actions.h"
+#include "bn_sprite_palette_actions.h"
+#include "bn_sprite_affine_mat_actions.h"
+#include "bn_sprite_ptr.h"
 
-#include "bn_regular_bg_items_mountains.h"
-#include "bn_regular_bg_items_foliage.h"
-#include "bn_regular_bg_items_space.h"
-#include "bn_regular_bg_items_night.h"
-
-#include "bn_sprite_items_curtain.h"
-#include "bn_sprite_items_count.h"
-
-#include "stage_select.hpp"
-#include "player_select.hpp"
-
-#include "player.hpp"
-#include "controller.hpp"
-#include "colliders.hpp"
-
-namespace arena{
-    void battle();
+#ifndef __COLLIDERS_THING_IDK__
+#define __COLLIDERS_THING_IDK__
+namespace colliders{
+    class arena{
+        public:
+            arena(int stage);
+            bool pointIn(bn::fixed x, bn::fixed y);
+            int cStage;
+    };
 }
+#endif

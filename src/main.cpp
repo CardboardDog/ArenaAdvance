@@ -8,8 +8,8 @@ int main(){
     while(1){
         //players::playerSelect();
         //stages::stageSelectFade();
-        //stages::stageSelect();
-        //stages::stageSelectFadeOut();
+        stages::stageSelect();
+        stages::stageSelectFadeOut();
         arena::battle();
         bn::core::update();
     }

@@ -169,6 +169,8 @@ namespace arena{
             core::update();
             animFrame++;
         }
+        colliders::arena* arenaCollider = new colliders::arena(stages::picked);
+        for(int i=0;i<4;i++)allPlayers[i]->arenaCol=arenaCollider;
         controllers::controller* playerController = new controllers::controller(allPlayers[0]);
         while(1){
             playerController->update();

@@ -47,6 +47,7 @@
 
 #include "stage_select.hpp"
 #include "player_select.hpp"
+#include "colliders.hpp"
 
 #define tBoxer 0;
 #define tBubble 1;
@@ -86,6 +87,7 @@ namespace players{
             bn::sprite_animate_action<2>* bubbleRun;
             bn::sprite_animate_action<2>* rockRun;
             bn::sprite_animate_action<2>* idle;
+            colliders::arena* arenaCol;
         private:
             bn::sprite_ptr* sprite = nullptr;
     };

@@ -44,19 +44,38 @@ namespace players{
         this->respawn[0]=y;
     }
     void player::update(){
+        bool wasGrounded = !this->inAir;
         // i love how butano has no translation function
         this->sprite->set_position(
-            this->sprite->position().x()+this->velocity[0],
+            this->sprite->position().x(),
             this->sprite->position().y()+this->velocity[1]
         );
         if(!this->inAir){
             this->sprite->set_position(
                 this->sprite->position().x()+this->currentWalk/2,
                 this->sprite->position().y()
-            );  
+            );
         }else{
             this->velocity[1] += 0.25;
+            this->sprite->set_position(
+                this->sprite->position().x()+this->velocity[0],
+                this->sprite->position().y()
+            );
+        };
+        this->inAir = !this->arenaCol->pointIn(this->sprite->position().x(),this->sprite->position().y());
+        if(!this->inAir){
+            if(this->velocity[1]>0){
+                this->velocity[0]=0;
+                this->velocity[1]=0;
+                for(int i=0;i<20;i++){
+                    if(!this->arenaCol->pointIn(this->sprite->position().x(),this->sprite->position().y()-i)){
+                        this->sprite->set_position(this->sprite->position().x(),this->sprite->position().y()-i+1);
+                        break;
+                    }
+                }
+            }else if(this->velocity[1].round_integer()!=0)this->inAir=true;
         }
+        if(wasGrounded&&this->inAir)this->velocity[0]=this->currentWalk/2;
     }
     void player::dontWalk(){
         if(!this->inAir){
