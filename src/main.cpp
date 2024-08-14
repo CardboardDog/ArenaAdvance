@@ -6,10 +6,10 @@
 int main(){
     bn::core::init();
     while(1){
-        //players::playerSelect();
+        players::playerSelect();
         //stages::stageSelectFade();
-        stages::stageSelect();
-        stages::stageSelectFadeOut();
+        //stages::stageSelect();
+        //stages::stageSelectFadeOut();
         arena::battle();
         bn::core::update();
     }

@@ -104,7 +104,7 @@ namespace players{
         }
     }
     void player::animate(){
-        if(this->currentWalk.round_integer()!=0){
+        if(this->currentWalk.round_integer()!=0 && !this->inAir){
             switch(this->playType){
                 case 0:
                     this->boxerRun->update();
@@ -124,8 +124,10 @@ namespace players{
                 default:
                     break;
             }
-        }else{
+        }else if(!this->inAir){
             this->idle->update();
+        }else{
+            this->jumpAnim->update();
         }
     }
 }

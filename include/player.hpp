@@ -87,6 +87,7 @@ namespace players{
             bn::sprite_animate_action<2>* bubbleRun;
             bn::sprite_animate_action<2>* rockRun;
             bn::sprite_animate_action<2>* idle;
+            bn::sprite_animate_action<2>* jumpAnim;
             colliders::arena* arenaCol;
         private:
             bn::sprite_ptr* sprite = nullptr;

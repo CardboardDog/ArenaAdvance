@@ -8,6 +8,11 @@ using namespace bn;
 #define runAll2(ptr) run2(ptr,bubble,32),run2(ptr,rock,4)
 #define idle(ptr,type) create_sprite_animate_action_forever(ptrPile[ptr],1,sprite_items::type.tiles_item(),0,0)
 #define idleAll(ptr) idle(ptr,boxer),idle(ptr,wiener),idle(ptr,hammer),idle(ptr,bubble),idle(ptr,rock)
+#define jumpAll(ptr) create_sprite_animate_action_forever(ptrPile[ptr],1,sprite_items::boxer.tiles_item(),4,4),\
+    create_sprite_animate_action_forever(ptrPile[ptr],1,sprite_items::wiener.tiles_item(),5,5),\
+    create_sprite_animate_action_forever(ptrPile[ptr],1,sprite_items::hammer.tiles_item(),8,8),\
+    create_sprite_animate_action_forever(ptrPile[ptr],1,sprite_items::bubble.tiles_item(),6,6),\
+    create_sprite_animate_action_forever(ptrPile[ptr],1,sprite_items::rock.tiles_item(),2,2)                        
 namespace arena{
     fixed tangent(int theta){ 
         /* 
@@ -83,7 +88,14 @@ namespace arena{
             idleAll(1),
             idleAll(2),
             idleAll(3),
-            idleAll(4)
+            idleAll(4),
+        };
+        sprite_animate_action<2> jumpAnims[25]{
+            jumpAll(0),
+            jumpAll(1),
+            jumpAll(2),
+            jumpAll(3),
+            jumpAll(4)
         };
         for(int i=0;i<4;i++){
             allPlayers[i]->boxerRun = &fourRunAnims[i*5];
@@ -94,18 +106,23 @@ namespace arena{
             switch(players::picked[i]){
                 case 0:
                     allPlayers[i]->idle = &idleAnims[i*5];
+                    allPlayers[i]->jumpAnim = &jumpAnims[i*5];
                     break;
                 case 1:
                     allPlayers[i]->idle = &idleAnims[(i*5)+1];
+                    allPlayers[i]->jumpAnim = &jumpAnims[(i*5)+1];
                     break;
                 case 2:
                     allPlayers[i]->idle = &idleAnims[(i*5)+2];
+                    allPlayers[i]->jumpAnim = &jumpAnims[(i*5)+2];
                     break;
                 case 3:
                     allPlayers[i]->idle = &idleAnims[(i*5)+3];
+                    allPlayers[i]->jumpAnim = &jumpAnims[(i*5)+3];
                     break;
                 case 4:
                     allPlayers[i]->idle = &idleAnims[(i*5)+4];
+                    allPlayers[i]->jumpAnim = &jumpAnims[(i*5)+4];
                     break;
                 default:
                     break;
